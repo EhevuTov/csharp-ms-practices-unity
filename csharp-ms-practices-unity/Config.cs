@@ -11,6 +11,12 @@ namespace csharp_ms_practices_unity
 {
     public class Config
     {
-        IUnityContainer Container = new UnityContainer().LoadConfiguration("someObject");
+        internal static IUnityContainer container {get; private set;}
+        public Config()
+        {
+            container = new UnityContainer().LoadConfiguration("someObject");
+            var users = Config.container.Resolve<UserRegistry>();
+        }
+
     }
 }
